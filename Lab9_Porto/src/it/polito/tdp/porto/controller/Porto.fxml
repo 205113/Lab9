@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.porto.controller.PortoController">
-	<!-- TODO Add Nodes -->
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.polito.tdp.porto.controller.PortoController">
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Primo autore:" />
+            <ComboBox fx:id="PrimoAutore" prefWidth="150.0" />
+            <Label text="Secondo autore:" />
+            <ComboBox fx:id="SecondoAutore" prefWidth="150.0" />
+            <HBox>
+               <children>
+                  <Button fx:id="Coautori" mnemonicParsing="false" onAction="#TrovaCoautori" text="Visualizza Coautori" />
+                  <Button fx:id="Cluster" mnemonicParsing="false" onAction="#TrovaCluster" text="Visualizza cluster">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="Articoli" mnemonicParsing="false" onAction="#TrovaArticoli" text="Visualizza articoli">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <TextArea fx:id="Risultato" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
