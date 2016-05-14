@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 
 public class PortoController {
 	private ModelloPorto model;
+	private boolean generato=false;
 	
     @FXML
     private ResourceBundle resources;
@@ -44,6 +45,10 @@ public class PortoController {
 
     @FXML
     void TrovaArticoli(ActionEvent event) {
+    	if(!generato){
+    		model.genera();
+    		generato=true;
+    	}
     	if((PrimoAutore.getValue().getGiven_name().compareTo("Nessun")==0)||(SecondoAutore.getValue().getGiven_name().compareTo("Nessun")==0))
     		Risultato.setText("Devi selezionare due autori");
     		
@@ -57,7 +62,10 @@ public class PortoController {
     @FXML
     void TrovaCluster(ActionEvent event) {
     	if((PrimoAutore.getValue().getGiven_name().compareTo("Nessun")==0)&&(SecondoAutore.getValue().getGiven_name().compareTo("Nessun")==0))
-    	{
+    	{   if(!generato){
+    			model.genera();
+    			generato=true;
+    	}
     		//manca
     	}
     	else
@@ -81,6 +89,10 @@ public class PortoController {
 
     @FXML
     void TrovaCoautori(ActionEvent event) {
+    	if(!generato){
+    		model.genera();
+    		generato=true;
+    	}
     	Autore a;
     	if(PrimoAutore.getValue().getGiven_name().compareTo("Nessun")==0){
     		if(SecondoAutore.getValue().getGiven_name().compareTo("Nessun")==0){
@@ -112,5 +124,7 @@ public class PortoController {
 		SecondoAutore.getItems().add(primo);
 		PrimoAutore.setValue(primo);
 		SecondoAutore.setValue(primo);
+		PrimoAutore.getItems().addAll(model.autori());
+		SecondoAutore.getItems().addAll(model.autori());
 	}
 }

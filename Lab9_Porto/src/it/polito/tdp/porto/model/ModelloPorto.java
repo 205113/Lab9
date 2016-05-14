@@ -21,7 +21,7 @@ public class ModelloPorto {
 		for(Articolo a:articoli){
 			for(Autore a1:autori){
 				for(Autore a2:autori){
-					if(p.coautori(a,a1,a2))
+					if(p.coautori(a,a1,a2)&& !a1.equals(a2))
 						grafo.addEdge(a1, a2,a);
 				}
 			}
@@ -50,5 +50,9 @@ public class ModelloPorto {
 		//Autori+Articoli scritti da loro
 	}
 	
+	public List<Autore> autori(){
+		ModelloPortoDAO p = new ModelloPortoDAO();
+		return p.autori();
+	}
 	
 }
