@@ -66,7 +66,8 @@ public class PortoController {
     			model.genera();
     			generato=true;
     	}
-    		//manca
+    		//manca parte, cos'è cluster?
+    		Risultato.setText("Non implementato");
     	}
     	else
     		Risultato.setText("Non devi selezionare autori");

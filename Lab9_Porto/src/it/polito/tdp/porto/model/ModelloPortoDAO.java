@@ -93,4 +93,29 @@ public class ModelloPortoDAO {
 		return false;
 	}
 
+	public List<Integer> coautori(Articolo a) {
+		Connessione c= new Connessione("jdbc:mysql://localhost/porto?user=root");
+		Connection conn= c.connetti();
+		String sql="";
+		List<Integer> id= new ArrayList<Integer>();
+		try {
+				sql="SELECT id_creator FROM authorship WHERE eprintid = ?";
+				PreparedStatement s= conn.prepareStatement(sql);
+				s.setLong(1, a.getEprintid());
+				ResultSet rs= s.executeQuery();
+				while(rs.next()){
+					id.add(rs.getInt("id_creator"));
+				}
+				
+			conn.close();
+			rs.close();
+			return id;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

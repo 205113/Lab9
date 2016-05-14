@@ -19,13 +19,32 @@ public class ModelloPorto {
 		Graphs.addAllVertices(grafo, autori);
 		List<Articolo> articoli=p.articoli();
 		for(Articolo a:articoli){
-			for(Autore a1:autori){
-				for(Autore a2:autori){
+			//for(Autore a1:autori){
+				List<Integer>coautori= p.coautori(a);
+				for(int i=0;i<coautori.size();i++){
+					Autore a1=trovaAutore(coautori.get(i),autori);
+					for(int j=0;j<coautori.size();j++){
+						Autore a2=trovaAutore(coautori.get(j),autori);
+						if(!a1.equals(a2))
+							grafo.addEdge(a1, a2, a);
+					}
+						
+				}
+				/*for(Autore a2:autori){
 					if(p.coautori(a,a1,a2)&& !a1.equals(a2))
 						grafo.addEdge(a1, a2,a);
 				}
-			}
+			}*/
 		}
+	}
+
+	private Autore trovaAutore(Integer id, List<Autore> autori) {
+		Autore a=null;
+		for(Autore temp:autori){
+			if(temp.getId_creator()==id)
+				a=temp;
+		}
+		return a;
 	}
 
 	public List<Autore> coautori(Autore a) {
@@ -47,7 +66,7 @@ public class ModelloPorto {
 	}
 	
 	public void cluster(){
-		//Autori+Articoli scritti da loro
+		//Autori+Articoli scritti da loro?
 	}
 	
 	public List<Autore> autori(){
